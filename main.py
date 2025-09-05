@@ -23,6 +23,11 @@ def main():
         return
 
     index_files = [f for f in os.listdir(indexes_dir_path) if os.path.isfile(os.path.join(indexes_dir_path, f))]
+
+    if not index_files:
+        print(f'No index files found in {indexes_dir_path}. Please download Minecraft versions in your launcher first.')
+        return
+
     order_map = {k: i for i, k in enumerate(VERSIONS.keys())}
     index_files.sort(key=lambda f: order_map.get(f[:-5], float("inf")))
     print('Select an index file:')
